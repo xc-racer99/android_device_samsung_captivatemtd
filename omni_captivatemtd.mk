@@ -19,7 +19,10 @@ TARGET_LOW_RAM_DEVICE := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # bootanimation
-TARGET_BOOTANIMATION_SIZE := 480x320
+TARGET_BOOTANIMATION_SIZE := 480x270
+
+# Exclude Live Wallpapers
+TARGET_EXCLUDE_LIVEWALLPAPERS := true
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
@@ -28,7 +31,7 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, device/samsung/captivatemtd/device.mk)
 
 # Galaxy S uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Device identifier
