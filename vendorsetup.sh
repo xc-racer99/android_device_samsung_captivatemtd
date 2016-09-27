@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_captivatemtd-userdebug
+add_lunch_combo aosp_captivatemtd-userdebug

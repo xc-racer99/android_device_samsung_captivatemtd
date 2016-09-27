@@ -34,23 +34,30 @@
 # and is used by people who have access to binary versions of the drivers
 # but not to the original vendor tree. Be sure to update both.
 
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+  LOCAL_KERNEL := device/samsung/captivatemtd/zImage
+else
+  LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # These are the hardware-specific configuration files
-PRODUCT_COPY_FILES = \
-	device/samsung/captivatemtd/asound.conf:system/etc/asound.conf
+PRODUCT_COPY_FILES += \
+    device/samsung/captivatemtd/asound.conf:system/etc/asound.conf
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/captivatemtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
-	device/samsung/captivatemtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
-	device/samsung/captivatemtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
+    device/samsung/captivatemtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+    device/samsung/captivatemtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
+    device/samsung/captivatemtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
-# Misc other modules
-PRODUCT_PACKAGES += \
-	overlay.aries
-
-# Libs
-PRODUCT_PACKAGES += \
-	libcamera
+# This device is hdpi
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+# A list of dpis to select prebuilt apk, in precedence order.
+PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi xhdpi xxhdpi
 
 # Inherit Aries common device configuration.
 $(call inherit-product, device/samsung/aries-common/device_base.mk)
